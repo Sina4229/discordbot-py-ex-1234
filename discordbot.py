@@ -14,6 +14,7 @@ intents = discord.Intents.all()
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}.')
+    await client.change_presence(status=discord.Status.online, activity=discord.Game("문의는 Sina#4229"))
 
 @client.event
 async def on_member_join(member):
