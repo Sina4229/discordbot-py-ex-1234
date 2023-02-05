@@ -16,13 +16,13 @@ async def on_ready():
     print(f'Logged in as {client.user}.')
 
 @client.event
-    async def on_member_join(member):
-        if member.dm_channel:
-            channel = member.dm_channel
-        else:
-            channel = await member.create_dm()
-        name = member.name
-        await channel.send(f"{name}님, 안녕하세요! 클랜 Signus 디스코드에 오신걸 환영합니다.")
+async def on_member_join(member):
+    if member.dm_channel:
+        channel = member.dm_channel
+    else:
+        channel = await member.create_dm()
+    name = member.name
+    await channel.send(f"{name}님, 안녕하세요! 클랜 Signus 디스코드에 오신걸 환영합니다.")
         
 @client.event
 async def on_message(message):
