@@ -40,6 +40,7 @@ async def on_message(message):
             embed.add_field(name="인증 대상자", value=f"{user.name} ( {user.mention} )", inline=False)
             embed.add_field(name="담당 관리자", value=f"{message.author} ( {message.author.mention} )", inline=False)
             embed.set_footer(text="Bot Made by. Sina#4229")
+            await user.send (embed=embed)
             await message.author.send (embed=embed)
             role = discord.utils.get(message.guild.roles, name = '클랜원')
             await user.add_roles(role)
