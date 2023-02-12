@@ -77,12 +77,12 @@ async def on_message(message):
         else:
             await message.channel.send("{}, 당신은 관리자가 아닙니다".format(message.author.mention))
             
-        elif message.content.startswith ("!kick "):
-            if message.author.guild_permissions.administrator:
-                member = message.guild.get_member(int(message.content.split(" ")[1]))
-                await message.guild.kick(member, reason=' '.join(message.content.split(" ")[2:]))
-            else:
-                await message.channel.send("{}, 당신은 관리자가 아닙니다".format(message.author.mention))
+    elif message.content.startswith ("!kick "):
+        if message.author.guild_permissions.administrator:
+            member = message.guild.get_member(int(message.content.split(" ")[1]))
+            await message.guild.kick(member, reason=' '.join(message.content.split(" ")[2:]))
+        else:
+            await message.channel.send("{}, 당신은 관리자가 아닙니다".format(message.author.mention))
 
 
 try:
