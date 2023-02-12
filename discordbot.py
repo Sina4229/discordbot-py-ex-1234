@@ -48,6 +48,34 @@ async def on_message(message):
 
         else:
             await message.channel.send(embed=discord.Embed(title="권한 부족", description = message.author.mention + "님은 권한이 없습니다", color = 0xff0000))
+            
+    elif message.content.startswith ("!청소 "):
+        if message.author.guild_permissions.administrator:
+            amount = message.content[4:]
+            await message.delete()
+            await message.channel.purge(limit=int(amount))
+
+            embed = discord.Embed(title="메시지 삭제 알림", description="최근 디스코드 채팅 {}개가\n관리자 {}님의 요청으로 인해 정상 삭제 조치 되었습니다".format(amount, message.author), color=0x000000)
+            embed.set_footer(text="Bot Made by. Sina#4229", icon_url="https://discordapp.com/channels/691615852620939274/703908401381376000/711859989177958410")
+            await message.channel.send(embed=embed)
+        
+        else:
+            await message.delete()
+            await message.channel.send("{}, 당신은 명령어를 사용할 수 있는 권한이 없습니다".format(message.author.mention))
+
+    elif message.content.startswith ("!공지 "):
+        await message.delete()
+        if message.author.guild_permissions.administrator:
+            notice = message.content[4:]
+            channel = client.get_channel(1071441774549147769)
+            embed = discord.Embed(title="Signus 공지", description="공지사항 내용은 항상 숙지 해주시기 바랍니다\n――――――――――――――――――――――――――――\n\n{}\n\n――――――――――――――――――――――――――――".format(notice),timestamp=datetime.datetime.now(pytz.timezone('UTC')), color=0x00ff00)
+            embed.set_footer(text="Bot Made by.  Sina #4229 | 담당 관리자 : {}".format(message.author), icon_url="https://ibb.co/MhkJQ2b")
+            embed.set_thumbnail(url="https://ibb.co/MhkJQ2b")
+            await channel.send("@everyone", embed=embed)
+            await message.author.send("**[ BOT 자동 알림 ]** | 정상적으로 공지가 채널에 작성이 완료되었습니다 : )\n\n[ 기본 작성 설정 채널 ] : {}\n[ 공지 발신자 ] : {}\n\n[ 내용 ]\n{}".format(channel, message.author, notice))
+ 
+        else:
+            await message.channel.send("{}, 당신은 관리자가 아닙니다".format(message.author.mention))
 
 
 try:
