@@ -49,7 +49,7 @@ async def on_message(message):
         else:
             await message.channel.send(embed=discord.Embed(title="권한 부족", description = message.author.mention + "님은 권한이 없습니다", color = 0xff0000))
             
-    if message.content.startswith ("!인증 "):
+    if message.content.startswith ("!도박꾼 "):
         await message.channel.send(embed=discord.Embed(title="도박 시스템", description = "역할 지급이 정상적으로 완료 되었습니다 !",timestamp=datetime.datetime.now(pytz.timezone('UTC')), color = 0xff0000))
 
         user = message.mentions[0]
