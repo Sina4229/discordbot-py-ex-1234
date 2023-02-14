@@ -57,7 +57,6 @@ async def on_message(message):
 
             embed = discord.Embed(title="도박 시스템", description="역할 지급이 정상적으로 완료 되었습니다 !",timestamp=datetime.datetime.now(pytz.timezone('UTC')), color=0xff0000)
             embed.add_field(name="지급 대상자", value=f"{user.name} ( {user.mention} )", inline=False)
-            embed.add_field(name="신청인", value=f"{message.author} ( {message.author.mention} )", inline=False)
             embed.set_footer(text="Bot Made by. Sina#4229")
             await user.send (embed=embed)
             await message.author.send (embed=embed)
